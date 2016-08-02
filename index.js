@@ -31,7 +31,8 @@ function streamToCsv(html) {
     var fileInfoJson = createFileInfoJson(tds);
     csvData.push(fileInfoJson);
   });
-  var csv = json2csv({ data: csvData, fields: Object.keys(csvData[0])});
+  var csvFields = Object.keys(csvData[0]);
+  var csv = json2csv({ data: csvData, fields: csvFields});
   fs.writeFile(file, csv, function(err) {
     if(err) throw err;
     console.log('Saved csv data to ' + file);
